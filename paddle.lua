@@ -1,5 +1,7 @@
 Paddle = Object:extend()
 
+local paddlePad = 10 -- Prevents part of paddle from moving off screen.
+
 function Paddle:new(x, y, img, ai, color)
   self.x = x
   self.y = y
@@ -17,15 +19,19 @@ function Paddle:new(x, y, img, ai, color)
 end
 
 function Paddle:update(dt)
-  local window_width = love.graphics.getWidth()  
+  local window_width = love.graphics.getWidth()
   local window_height = love.graphics.getHeight()
   
-  Paddle:getBounds()
-    
+  if self.x > window_height then
+    --print("position > window_height")
+  end
+  
+  --print("y of paddle:" .. self.y)
+  
   if not self.ai then
-    if love.keyboard.isDown("up") and top >= window_height  then
+    if love.keyboard.isDown("up") and self.y - paddlePad > 0 then
       self.y = self.y - self.speed * dt
-    elseif love.keyboard.isDown("down") then
+    elseif love.keyboard.isDown("down") and self.y + self.height + paddlePad < window_height then
       self.y = self.y + self.speed * dt
     end
   end

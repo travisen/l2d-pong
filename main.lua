@@ -1,4 +1,7 @@
 -- Load some default values for our rectangle.
+
+DEBUGGING = 0 -- 1 to turn debuggin on.
+
 function love.load()
   Object = require "lib/classic"
   require "paddle"
@@ -6,7 +9,7 @@ function love.load()
   
   -- Get x and y center of screen
   yCenter = love.graphics.getHeight()/2
-  width = love.graphics.getWidth()
+  width = love.graphics.getWidth() - 30
   
   -- Load paddles
   paddle1 = Paddle(20, yCenter, "default", false, "red")
