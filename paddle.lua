@@ -17,8 +17,13 @@ function Paddle:new(x, y, img, ai, color)
 end
 
 function Paddle:update(dt)
+  local window_width = love.graphics.getWidth()  
+  local window_height = love.graphics.getHeight()
+  
+  Paddle:getBounds()
+    
   if not self.ai then
-    if love.keyboard.isDown("up") then
+    if love.keyboard.isDown("up") and top >= window_height  then
       self.y = self.y - self.speed * dt
     elseif love.keyboard.isDown("down") then
       self.y = self.y + self.speed * dt
