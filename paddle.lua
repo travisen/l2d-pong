@@ -44,6 +44,18 @@ function Paddle:update(dt)
   end
 end
 
+function Paddle:trackBall(ball, dt)
+  local window_width = love.graphics.getWidth()
+  local window_height = love.graphics.getHeight()
+  
+  if self.y < ball.y and self.y + self.height + paddlePad < window_height then
+    self.y = self.y + self.speed * dt
+  end
+  if self.y > ball.y and self.y - paddlePad > 0 then
+    self.y = self.y - self.speed * dt
+  end
+end
+
 function Paddle:getBounds()
   
   top = self.y
