@@ -9,6 +9,7 @@ function Game:new()
   -- Get x and y center of screen
   yCenter = love.graphics.getHeight()/2
   width = love.graphics.getWidth() - PADDLE_DIST_FROM_SCR
+  center = love.graphics.getWidth()
   
   -- Load paddles
   paddle1 = Paddle(PADDLE_DIST_FROM_SCR - 10, yCenter, "default", false, "red")
@@ -44,12 +45,16 @@ end
 
 function Game:draw()
   
+  for i=0, 10 do
+    love.graphics.rectangle("fill", 760, 80 * i, 20, 60)
+  end
+    
   love.graphics.setColor(244, 0, 0)
   paddle1:draw()
   love.graphics.setColor(0, 0, 244)
   paddle2:draw()
   love.graphics.setColor(255, 255, 255)
   ball1:draw()  
-  love.graphics.print(self.scoreLeft .. " - " .. self.scoreRight)
+  love.graphics.print(self.scoreLeft .. " - " .. self.scoreRight, 712, 20, 0, 4, 4)
   
 end
