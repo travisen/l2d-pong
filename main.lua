@@ -2,8 +2,6 @@ DEBUGGING = true -- true to turn debugging on.
 
 function love.load()
   Object = require "lib/classic"
-  require "paddle"
-  require "ball"
   require "game"
   
   game = Game()

@@ -12,7 +12,7 @@ function Paddle:new(x, y, img, ai, color)
   self.style = "line"
   self.width = 15
   self.height = 150
-
+  
   -- Load image or love rectangle
   if img ~= "default" then
     self.paddle = love.graphics.newImage(img)
@@ -50,10 +50,12 @@ function Paddle:update(dt)
 end
 
 function Paddle:getBounds()
+  
   top = self.y
   right = self.x + self.width
   bot = self.y + self.height
-  left = self.x 
+  left = self.x
+  
 end
 
 function Paddle:draw()

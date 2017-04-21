@@ -12,7 +12,7 @@ function Game:new()
   
   -- Load paddles
   paddle1 = Paddle(PADDLE_DIST_FROM_SCR - 10, yCenter, "default", false, "red")
-  paddle2 = Paddle(width, yCenter, "assets/paddle2.png", true, "blue")
+  paddle2 = Paddle(width, yCenter, "assets/paddle2.png", false, "blue")
   
   -- Load ball
   ball1 = Ball()
@@ -23,7 +23,8 @@ function Game:update(dt)
   paddle1:update(dt)
   paddle2:update(dt)
   ball1:update(dt, paddle1, paddle2)
-  ball1:paddleCollision(self.paddle1)
+  ball1:paddleCollision(paddle1)
+  ball1:paddleCollision(paddle2)
   
 end
 

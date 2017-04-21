@@ -1,5 +1,3 @@
-
-
 Ball = Object:extend()
 
 function Ball:new()
@@ -13,19 +11,14 @@ function Ball:new()
   --assert(self.image ~= nil)
   
   --Initial Speed
-  self.speedx = 400
-  self.speedy = 400
+  self.speedx = -400
+  self.speedy = -400
 end
 
 function Ball:update(dt, paddle1, paddle2)
   -- Update position
   self.x = self.x + (self.speedx * dt)
   self.y = self.y + (self.speedy * dt)
-
-  local p1x, p1y = paddle1:getPosition()
-  local p2x, p2y = paddle2:getPosition()
-  local p1h, p1w = paddle1:getDimensions()
-  local p2h, p2w = paddle2:getDimensions()
 
   -- Get Window bounds
   local window_width = love.graphics.getWidth()  
@@ -44,40 +37,44 @@ function Ball:getPosition()
   print(self.x, self.y)
   return self.x, self.y
 end
---[[
-function Ball:paddleCollision(dt, paddle1, paddle2, bx, by, bradius, speedx)
-  p1x, p1y = paddle1:getPosition()
-  p2x, p2y = paddle2:getPosition()
-  p1h, p1w = paddle1:getDimensions()
-  p2h, p2w = paddle2:getDimensions()
 
-  --self.getPosition()
-  
-  if DEBUGGING then
-    --print("paddle1: ", p1x, p1y)
-    --print("paddle2: ", p2x, p2y)
-    --print("ball1: ", bx, by)
-  end
 
-  if p1y <= by and p1y + p1h >= by and p1x + p1w >= bx + bradius then
-    print("TRUE")
-  end
-  
-end
---]]
-function Ball:paddleCollision(paddle)
+function Ball:paddleCollision(p)
   -- Check for ball and paddle collision and update direction.
   -- Refactor this.
   --[[
   if p1y <= self.y and p1y + p1h >= self.y and p1x + p1w >= self.x + self.radius then
     print("TRUE")
-    
   end
   --]]
+  --top, right, bot, left = p:getBounds()
+  --print(p.x, p.y, p.height, p.width)
+  
+  -- Paddle bounds.
+  local pLeft = p.x
+  local pRight = p.x + p.width
+  local pTop = p.y 
+  local pBot = p.y + p.height
+  
+  -- Ball bounds.
+  local bLeft = self.x - self.radius
+  local bRight = self.x + self.radius
+  local bTop = self.y - self.radius
+  local bBot = self.y + self.radius
+  
+  if bLeft < pRight and bRight > pLeft and bTop < pTop and bBot > pBot then
+    print("bLeft ", bLeft , "bRight ", bRight,  "bTop ", bTop,  "bBot ", bBot)
+    print("pLeft ", pLeft , "pRight ", pRight,  "pTop ", pTop,  "pBot ", pBot)
+  end
+
+  if bLeft < pRight and bRight > pLeft and bTop > pTop and bBot < pBot then
+    self.speedx = -self.speedx
+    print("hit")
+  end
   
 end
 
 function Ball:draw(dt)
   --love.graphics.draw(self.image, self.x, self.y)
-  self.ball = love.graphics.circle("fill", self.x, self.y, self.radius, 500)
+  self.ball = love.graphics.circle("fill", self.x, self.y, self.radius, 50)
 end
