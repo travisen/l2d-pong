@@ -31,15 +31,10 @@ function Paddle:getDimensions()
 end
 
 function Paddle:update(dt)
+
   local window_width = love.graphics.getWidth()
   local window_height = love.graphics.getHeight()
-  
-  if self.x > window_height then
-    --print("position > window_height")
-  end
-  
-  --print("y of paddle:" .. self.y)
-  
+    
   if not self.ai then
     if love.keyboard.isDown("up") and self.y - paddlePad > 0 then
       self.y = self.y - self.speed * dt
@@ -59,5 +54,7 @@ function Paddle:getBounds()
 end
 
 function Paddle:draw()
+  
   love.graphics.rectangle(self.style, self.x, self.y, self.width, self.height)
+  
 end
