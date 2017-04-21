@@ -22,6 +22,14 @@ function Paddle:new(x, y, img, ai, color)
   self.speed = 500
 end
 
+function Paddle:getPosition()
+  return self.x, self.y
+end
+
+function Paddle:getDimensions()
+  return self.width, self.height
+end
+
 function Paddle:update(dt)
   local window_width = love.graphics.getWidth()
   local window_height = love.graphics.getHeight()

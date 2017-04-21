@@ -1,6 +1,4 @@
--- Load some default values for our rectangle.
-
-DEBUGGING = 0 -- 1 to turn debuggin on.
+DEBUGGING = true -- true to turn debugging on.
 
 function love.load()
   Object = require "lib/classic"
