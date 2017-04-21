@@ -1,3 +1,7 @@
+--[[
+
+--]]
+
 Paddle = Object:extend()
 
 local paddlePad = 10 -- Prevents part of paddle from moving off screen.

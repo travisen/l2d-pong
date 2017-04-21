@@ -21,8 +21,7 @@ function Ball:update(dt)
   -- Update position
   self.x = self.x + (self.speedx * dt)
   self.y = self.y + (self.speedy * dt)
-    --]]
-    
+  
   -- Update direction of speed vector on Window Collision
   if self.y > window_height or self.y < 0 then
     self.speedy = -self.speedy
@@ -30,12 +29,11 @@ function Ball:update(dt)
     self.speedx = -self.speedx
   end  
 end
-  --[[ Update direction and speed on paddle collision
-  if self.x radius 
-  
-end
---]]
 
+function Ball:paddleCollision(dt)
+
+end
+  
 
 function Ball:draw(dt)
   --love.graphics.draw(self.image, self.x, self.y)
