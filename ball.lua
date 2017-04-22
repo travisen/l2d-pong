@@ -7,6 +7,7 @@ function Ball:new()
   self.y = love.graphics.getHeight() / 2
   self.radius = 10
   self.segments = 30
+  self.speedUp = .1 -- Percent change in speed per paddle hit
   
   --self.image = love.graphics.circle("fill", self.x, self.y, self.radius, 100)
   --assert(self.image ~= nil)
@@ -78,7 +79,7 @@ function Ball:paddleCollision(p)
     and bRight > pLeft
     and bTop > pTop
     and bBot < pBot then      
-      self.speedx = -self.speedx +  -self.speedx*.05 -- self.speedx*.1 increases ball speed by 5% each paddle collision
+      self.speedx = -self.speedx +  -self.speedx * self.speedUp -- self.speedx*.1 increases ball speed by 5% each paddle collision
   end
   
 end

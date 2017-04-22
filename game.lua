@@ -12,8 +12,8 @@ function Game:new()
   center = love.graphics.getWidth()
   
   -- Load paddles
-  paddle1 = Paddle(PADDLE_DIST_FROM_SCR - 10, yCenter, "default", false, "red")
-  paddle2 = Paddle(width, yCenter, "assets/paddle2.png", true, "blue")
+  paddle1 = Paddle(PADDLE_DIST_FROM_SCR - 10, yCenter, "default", false, "red", 700)
+  paddle2 = Paddle(width, yCenter, "assets/paddle2.png", true, "blue", 1500)
   
   -- Load ball
   ball1 = Ball()

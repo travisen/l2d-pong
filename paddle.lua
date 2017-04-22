@@ -6,7 +6,7 @@ Paddle = Object:extend()
 
 local paddlePad = 10 -- Prevents part of paddle from moving off screen.
 
-function Paddle:new(x, y, img, ai, color)
+function Paddle:new(x, y, img, ai, color, speed)
   self.x = x
   self.y = y
   self.style = "line"
@@ -19,7 +19,7 @@ function Paddle:new(x, y, img, ai, color)
   end
   
   self.ai = ai
-  self.speed = 500
+  self.speed = speed
 end
 
 function Paddle:getPosition()
@@ -43,16 +43,17 @@ function Paddle:update(dt)
     end
   end
 end
-
+-- Use for non player
 function Paddle:trackBall(ball, dt)
   local window_width = love.graphics.getWidth()
   local window_height = love.graphics.getHeight()
-  
-  if self.y < ball.y and self.y + self.height + paddlePad < window_height then
-    self.y = self.y + self.speed * dt
-  end
-  if self.y > ball.y and self.y - paddlePad > 0 then
-    self.y = self.y - self.speed * dt
+  if ball.speedx > 0 then
+    if self.y < ball.y and self.y + self.height + paddlePad < window_height then
+      self.y = self.y + self.speed * dt
+    end
+    if self.y > ball.y and self.y - paddlePad > 0 then
+      self.y = self.y - self.speed * dt
+    end
   end
 end
 

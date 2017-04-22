@@ -4,7 +4,9 @@ function love.load()
   Object = require "lib/classic"
   require "game"
   
+  music = love.audio.newSource("assets/staycrunchy.mp3")
   game = Game()
+  music:play()
   
 end
  
